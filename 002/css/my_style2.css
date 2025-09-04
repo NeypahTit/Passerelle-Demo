@@ -68,47 +68,42 @@ h1, h2 {
     width: 12.5%;
 }
 
+ul {
+    background-color: var(--flax);
+    border-width: 0.3em;
+    border-style: solid;
+}
+
 .evolution {
     line-height: 1.3em;
-    background-color: var(--flax); /** duplication*/
-    border-width: 0.3em; /** duplication*/
-    border-style: solid; /** duplication*/
     border-color: transparent var(--black) var(--black) transparent;
 }
 
-ul > li > ul > li {
+ul > li > ul {
+    border-style: none;
     color: var(--bright-pink-crayola)
 }
 
+span[title] {
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    background-color: var(--flax);
+    border-width: 0.3em;
+    border-style: solid;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 span[title="first evolution"] {
-    padding-left: 0.3em; /** duplication*/
-    padding-right: 0.3em; /** duplication*/
-    background-color: var(--flax); /** duplication*/
-    border-width: 0.3em; /** duplication*/
-    border-style: solid; /** duplication*/
     border-color: transparent transparent var(--bright-pink-crayola) transparent;
     line-height: 50px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /** duplication*/
 }
 
 span[title="evolution 2"] {
-    padding-left: 0.3em;/** duplication*/
-    padding-right: 0.3em;/** duplication*/
-    background-color: var(--flax);/** duplication*/
-    border-width: 0.3em;/** duplication*/
-    border-style: solid;/** duplication*/
     border-color: transparent var(--bright-pink-crayola) var(--bright-pink-crayola) transparent;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /** duplication*/
 }
 
 span[title="evolution 3"] {
-    padding-left: 0.3em;/** duplication*/
-    padding-right: 0.3em;/** duplication*/
-    background-color: var(--flax);/** duplication*/
-    border-width: 0.3em;/** duplication*/
-    border-style: solid;/** duplication*/
     border-color: var(--bright-pink-crayola) var(--bright-pink-crayola) var(--bright-pink-crayola) transparent;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;/** duplication*/
 }
 
 table {
@@ -124,20 +119,12 @@ td {
 }
 
 #footer > a {
-    text-decoration: underline dashed; /** duplication (split)*/
-    text-decoration-color: var(--flax); /** duplication*/
-    text-decoration-thickness: 2px; /** duplication*/
+    text-decoration: none;
+    border-color: var(--flax);
+    border-width: 2px;
+    border-style: none none dashed none;
 }
 
-#footer:hover > a {
-    text-decoration: underline; /** duplication*/
-    text-decoration-color: var(--flax); /** duplication*/
-    text-decoration-thickness: 2px; /** duplication*/
+#footer > a:hover {
+    border-style: none none solid none;
 }
-
-/**
-Very good,
-You could get everything, all the details !
-
-For optimazytionm sake, and learning try to factorize all the duplications
-*/
