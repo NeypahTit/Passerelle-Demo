@@ -1,0 +1,143 @@
+
+    /*
+    Colors used
+
+    CSS HEX
+    --bright-pink-crayola: #ee4b6aff;
+    --pink: #f4b8c3ff;
+    --black: #010001ff;
+    --flax: #f2e47dff;
+    --arylide-yellow: #e6d460ff;
+    --mimi-pink: #fed7deff;
+    --red-cmyk: #ea261fff;
+
+     CSS HSL
+    --bright-pink-crayola: hsla(349, 83%, 61%, 1);
+    --pink: hsla(349, 73%, 84%, 1);
+    --black: hsla(300, 100%, 0%, 1);
+    --flax: hsla(53, 82%, 72%, 1);
+    --arylide-yellow: hsla(52, 73%, 64%, 1);
+    --mimi-pink: hsla(349, 95%, 92%, 1);
+    --red-cmyk: hsla(2, 83%, 52%, 1);
+
+*/
+:root {
+    --bright-pink-crayola: #ee4b6aff;
+    --pink: #f4b8c3ff;
+    --black: #010001ff;
+    --flax: #f2e47dff;
+    --arylide-yellow: #e6d460ff;
+    --mimi-pink: #fed7deff;
+    --red-cmyk: #ea261fff;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 25em;
+    padding-right: 25em;
+}
+
+body > em {
+    font-style: normal;
+    color: var(--bright-pink-crayola);
+    background-color: var(--mimi-pink);
+    padding: 0.6em;
+}
+
+h1, h2 {
+    background-color: var(--pink);
+    text-indent: 0.75em;
+}
+
+#pika1 {
+    float: right;
+    border-width: 0.3em;
+    border-style: solid;
+    border-color: var(--red-cmyk);
+}
+
+#pika1:hover {
+    border-color: var(--arylide-yellow);
+}
+
+#pika2 {
+    float: right;
+    border-width: 0.3em;
+    border-style: solid;
+    border-color: var(--red-cmyk);
+    width: 12.5%;
+}
+
+.evolution {
+    line-height: 1.3em;
+    background-color: var(--flax); /** duplication*/
+    border-width: 0.3em; /** duplication*/
+    border-style: solid; /** duplication*/
+    border-color: transparent var(--black) var(--black) transparent;
+}
+
+ul > li > ul > li {
+    color: var(--bright-pink-crayola)
+}
+
+span[title="first evolution"] {
+    padding-left: 0.3em; /** duplication*/
+    padding-right: 0.3em; /** duplication*/
+    background-color: var(--flax); /** duplication*/
+    border-width: 0.3em; /** duplication*/
+    border-style: solid; /** duplication*/
+    border-color: transparent transparent var(--bright-pink-crayola) transparent;
+    line-height: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /** duplication*/
+}
+
+span[title="evolution 2"] {
+    padding-left: 0.3em;/** duplication*/
+    padding-right: 0.3em;/** duplication*/
+    background-color: var(--flax);/** duplication*/
+    border-width: 0.3em;/** duplication*/
+    border-style: solid;/** duplication*/
+    border-color: transparent var(--bright-pink-crayola) var(--bright-pink-crayola) transparent;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /** duplication*/
+}
+
+span[title="evolution 3"] {
+    padding-left: 0.3em;/** duplication*/
+    padding-right: 0.3em;/** duplication*/
+    background-color: var(--flax);/** duplication*/
+    border-width: 0.3em;/** duplication*/
+    border-style: solid;/** duplication*/
+    border-color: var(--bright-pink-crayola) var(--bright-pink-crayola) var(--bright-pink-crayola) transparent;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;/** duplication*/
+}
+
+table {
+    border: 1em;
+    border-style: groove;
+    border-color: var(--pink);
+}
+
+td {
+    border: 0.05em;
+    border-style: solid;
+    border-color: var(--pink);
+}
+
+#footer > a {
+    text-decoration: underline dashed; /** duplication (split)*/
+    text-decoration-color: var(--flax); /** duplication*/
+    text-decoration-thickness: 2px; /** duplication*/
+}
+
+#footer:hover > a {
+    text-decoration: underline; /** duplication*/
+    text-decoration-color: var(--flax); /** duplication*/
+    text-decoration-thickness: 2px; /** duplication*/
+}
+
+/**
+Very good,
+You could get everything, all the details !
+
+For optimazytionm sake, and learning try to factorize all the duplications
+*/
