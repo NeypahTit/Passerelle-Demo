@@ -15,10 +15,13 @@ console.info("typeof bool-->"+typeof bool);                 //prints "typeof boo
 bool = 0;                                                   //defines "bool" as a number type
 console.info("typeof bool-->"+typeof bool);                 //prints "typeof bool-->number"
 
-let arr = [99, "1", true, 3];
+let arr = [99, "1", true, 3];                               //defines an array, which contains 4 indexes (position 0 to array's length - 1);
+                                                            //each index in this array is: 99 for 1st, "1" for 2nd, true for 3rd, 3 for 4th
+                                                            //types of index 0 to 3 are: number, string, boolean, number
+                                                            // ** //
 console.log(arr);                                           //prints ">Array (4) [ 99, "1", true, 3 ]
 console.info("typeof arr-->"+typeof arr);                   //prints "typeof arr-->object"
-arr[1] = 88;                                                //changes the 2nd position content in the array from "1" to 88
+arr[1] = 88;                                                //changes the 2nd index in the array from "1" to 88
 console.log(arr);                                           //prints ">Array (4) [ 99, 88, true, 3 ]
 
 let obj = {                                                 //creates an object with a name attribute and an age attribute
