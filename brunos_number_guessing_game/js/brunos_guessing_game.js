@@ -12,49 +12,51 @@ const trysNbr = 3;
 const limitHigh = 10;
 const limitlow = 1;
 let tried = 0;
-let goodByeString = `😢 ${random} was the correct answer ...`;
 
 // Get a random number, multiply by the desired range, get the absolute value (removing floating point value), re-arrange from the lower limit.
 let random = Math.floor(Math.random() * (limitHigh - limitlow)) + limitlow;
 
-console.log("loading...");
+let goodByeString = `😢 ${random} was the correct answer ...`;
+
+if (debug) console.log("loading...");
 
 this.onload = () => {
-    const instruct1 = `Number between ${limitlow} and ${limitHigh} guessing game ${(debug?`(${random})`:'')}`;
+    const instruct1 = `Number between ${limitlow} and ${limitHigh} guessing game<br>Please write down a number and press "Guess" to guess my number${(debug?`<br>(${random})`:'')}`;
     const instructParagraph = document.querySelector("#instructions");
     const userGuessInput = document.querySelector("#userGuess");
     const submitButton = document.querySelector("#submit");
 
-    console.log("loaded!");
-    console.log(instructParagraph);
-    instructParagraph.textContent = instruct1;
+    if (debug) console.log("loaded!");
+    if (debug) console.log(instructParagraph);
+    changeInstructionText(instruct1, true);
 
-    console.log(submitButton);
+    if (debug) console.log(submitButton);
     submitButton.addEventListener("click",
         (e) => myGame(e)
     );
 
     function myGame(e) {
         const userGuess = userGuessInput.value;
-        console.log(userGuessInput.value);
+        if (debug) console.log(userGuessInput.value);
 
         if (tried < trysNbr) {
             if (userGuess == null) {
+                // TODO: Change this from a confirm() to HTML element thingy
                 const chicken = confirm(`Are you chickening out? ("Ok" if YES "Cancel" if NO)`);
                 if (chicken) {
                     alert(`Glad you are being honest, I give you one more trial`);
                     tried--;
                 }
             } else if (userGuess == random) {
-                goodByeString = `🎉 Well done you found ${random} in ${tried} tries`;
+                goodByeString = `🎉 Well done you found ${random} in ${tried} try(-ies)`;
                 handleGameEnd();
             } else { //Correct number not found.
                 if (userGuess > limitHigh || userGuess < limitlow) { // Out of the limits.
-                    alert(`${userGuess} is not in the limit, stupid !!! I asked between ${limitlow} and ${limitHigh}`);
+                    changeInstructionText(`${userGuess} is not in the limit, stupid !!! I asked between ${limitlow} and ${limitHigh}`);
                 } else if( userGuess < random ) {
-                    alert(`${userGuess} is too low`);
+                    changeInstructionText(`${userGuess} is too low`);
                 } else {
-                    alert(`too high`);
+                    changeInstructionText(`${userGuess} is too high`);
                 }
             }
 
@@ -68,7 +70,17 @@ this.onload = () => {
         tried = trysNbr;
         userGuessInput.remove();
         submitButton.remove();
-        instructParagraph.textContent = goodByeString;
+        changeInstructionText(goodByeString);
+    }
+
+    function changeInstructionText(text, shouldInnerHTML) {
+        if (shouldInnerHTML === true) {
+            instructParagraph.innerHTML = text;
+            if (debug) console.log("innerHTML");
+        } else {
+            instructParagraph.textContent = text;
+            if (debug) console.log("replace text");
+        }
     }
 }
 
