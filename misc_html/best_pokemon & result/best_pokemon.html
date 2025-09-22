@@ -1,24 +1,45 @@
 <!DOCTYPE html>
 <html>
     <head>
-           <style>
-            span{
-                color:green;
+        <style>
+            body {
+                font-size: 1.35rem;
+                text-align: center;
+                background-color: rgb(255, 104, 54);
+                color: white;
+            }
+            h1, p, span {
+                color: gold;
             }
         </style>
     </head>
     <body>
         <h1>Best Pokemon</h1>
-        <form action="result.html" method="get">
-            Name:
-            <input type="text" name="name"/><br/>
+        <form action="result.html" method="get" autocomplete="on">
+            <span><label for="name">Please type in your name:</label></span><br>
+            <input type="text" id="name" name="name"/><br><br>
+            
+            <p>What is your favorite Pokemon?</p>
+            <input type="radio" id="pikachu" name="choice" value="Pikachu"></input>
+            <label for="pikachu">Pikachu</label><br>
+            <input type="radio" id="raichu" name="choice" value="Raichu"></input>
+            <label for="raichu">Raichu</label><br>
+            <input type="radio" id="evoli" name="choice" value="Evoli"></input>
+            <label for="evoli">Evoli</label><br>
+            <input type="radio" id="saraga" name="choice" value="Saraga"></input>
+            <label for="saraga">Saraga</label><br><br>
 
-            <input type="radio" name="choice" value="Pikachu">Pikachu</input><br/>
-            <input type="radio" name="choice" value="Raichu">Raichu</input><br/>
-            <input type="radio" name="choice" value="Evoli">Evoli</input><br/>
-            <input type="radio" name="choice" value="Saraga">Saraga</input><br/>
+            <!-- <p>Your favorite Pokemon colors?<br>(Can select multiple)</p>
+            <input type="checkbox" id="yellow" name="yellow" value="Yellow"></input>
+            <label for="yellow">Yellow</label><br>
+            <input type="checkbox" id="orange" name="orange" value="Orange"></input>
+            <label for="orange">Orange</label><br>
+            <input type="checkbox" id="white" name="white" value="White"></input>
+            <label for="white">White</label><br>
+            <input type="checkbox" id="black" name="black" value="Black"></input>
+            <label for="black">Black</label><br><br> -->
 
-            <input type="submit" value="submit"></input><br/> 
+            <input type="submit" value="Submit"></input><br> 
         </form>
         
     </body>

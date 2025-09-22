@@ -4,9 +4,20 @@
         <script>
             console.log(window.location);
             const params = new URLSearchParams(window.location.search);
+            
             const username = params.get('name');
             const vote = params.get('choice');
             let myClass = "";
+            
+            // const yellow = params.get('yellow');
+            // const orange = params.get('orange');
+            // const white = params.get('white');
+            // const black = params.get('black');
+            // const colorsArrayChecker = [yellow, orange, white, black];
+            // let colorsArray = [];
+            // let multipleColors = false;
+
+            // console.log(colorsArray, colorsArrayChecker);
 
             switch(vote) {
                 case 'Raichu':
@@ -15,33 +26,48 @@
                 case 'Pikachu':
                     myClass = 'red';
                     break;
-                // case 'Evoli':
-                    // myClass = 'blue';
-                    // break;
                 default:
                     myClass = 'blue';
             }
 
+            // for (i in colorsArrayChecker) {
+            //     if (null) break;
+            //     colorsArray.push(colorsArrayChecker[i]);
+            //     console.log(colorsArray);
+            // }
+
+            // if (colorsArray.length > 1) multipleColors = true;
+
             this.onload = () => {
                 const paragraph = document.querySelector("#result");
-                // paragraph.innerHTML = username + "'s favorite pokemon is " + vote;
-                // paragraph.innerHTML = `<span>${username}'s</span> favorite pokemon is <span class="${myClass}">${vote}</span>`;
-                paragraph.innerHTML = `<span>${username}'s</span> favorite pokemon is <span id="vote">${vote}</span>`;
+                paragraph.innerHTML = `<span>${username}'s</span> favorite Pokemon is <span id="vote">${vote}</span>`;
                 const voteSpan = document.querySelector("#vote");
                 voteSpan.style.color = myClass;
+                // if (!multipleColors) {
+                //     paragraph.innerHTML += `<br>Additionally, ${username}'s favorite color is ${colorsArray[0]}`;
+                // } else {
+                //     paragraph.innerHTML += `<br>Additionally, ${username}'s favorite colors are `;
+                // }
+
             }
         </script>
         <style>
-            span{
+            body {
+                font-size: 1.35rem;
+                text-align: center;
+                background-color: rgb(255, 104, 54);
+                color: white;
+            }
+            span {
                 color:green;
             }
-            .red{
+            .red {
                 color:red;
             }
-            .green{
+            .green {
                 color:green;
             }
-            .blue{
+            .blue {
                 color:blue;
             }
         </style>
