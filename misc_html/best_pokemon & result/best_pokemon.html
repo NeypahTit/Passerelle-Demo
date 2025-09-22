@@ -3,36 +3,54 @@
     <head>
         <title>A Pokemon Form</title>
         <script>
+            debug = false;
+
             this.onsubmit = (e) => {
                 const targetElement = event.target;
                 const usernameInput = targetElement.querySelector('#username');
-                // const isAdult = targetElement.querySelectorAll('#isAdult');
-                // const radioInput = targetElement.querySelectorAll('#choicePkmn');
+                const isAdultDIV = targetElement.querySelector('#isAdultDIV');
+                const isAdultInputs = targetElement.querySelectorAll("#isAdult");
+                const radioDIV = targetElement.querySelector('#choicePkmnDIV');
+                const radioInputs = targetElement.querySelectorAll("#choicePkmn");
 
                 let flagError = false;
 
-                console.log(e);
+                if (debug) {
+                    console.log(e);
+                    console.log(isAdultDIV);
+                    console.log(radioDIV);
+                }
 
                 if (usernameInput.value == "") {
-                    usernameInput.classList.add('error');
+                    flagAsError(usernameInput);
                     flagError = true;
                 }
 
-                // for (i in isAdult) {
-                //     if (!isAdult[i].checked) {
-                //         isAdult[i].classList.add('error');
-                //         flagError = true;
-                //     }
-                // }
+                if (debug) {
+                    for (i in isAdultDIV) {
+                        let isAdultInput = isAdultInputs[i];
+                    
+                        if (!isAdultInput.checked) {
+                            flagAsError(isAdultDIV);
+                            flagError = true;
+                        }
+                    }
 
-                // for (i in radioInput) {
-                //     if (!radioInput[i].checked) {
-                //         radioInput[i].classList.add('error');
-                //         flagError = true;
-                //     }
-                // }
+                    for (i in radioDIV) {
+                        let radioInput = radioInputs[i];
+
+                        if (!radioInput.checked) {
+                            flagAsError(radioDIV);
+                            flagError = true;
+                        }
+                    }
+                }    
 
                 return flagError ? false : true;
+            }
+
+            function flagAsError(param) {
+                param.classList.add('error');
             }
         </script>
         <style>
@@ -46,7 +64,7 @@
                 color: gold;
             }
             .error {
-                background-color: red;
+                border: 5px solid red;
             }
         </style>
     </head>
@@ -56,22 +74,25 @@
             <span><label for="username">Please type in your name:</label></span><br>
             <input type="text" id="username" name="username"/><br><br>
 
-            <p>Are you 18 or more years old?</p>
-            <input type="radio" id="isAdult" name="isAdult" value="Yes">
-            <label for="isAdult">Yes</label><br>
-            <input type="radio" id="isAdult" name="isAdult" value="No">
-            <label for="isAdult">No</label><br><br>
-            
-            
-            <p>What is your favorite Pokemon?</p>
-            <input type="radio" id="choicePkmn" name="choicePkmn" value="Pikachu">
-            <label for="pikachu">Pikachu</label><br>
-            <input type="radio" id="choicePkmn" name="choicePkmn" value="Raichu">
-            <label for="raichu">Raichu</label><br>
-            <input type="radio" id="choicePkmn" name="choicePkmn" value="Evoli">
-            <label for="evoli">Evoli</label><br>
-            <input type="radio" id="choicePkmn" name="choicePkmn" value="Saraga">
-            <label for="saraga">Saraga</label><br><br>
+            <div id="isAdultDIV">
+                <p>Are you 18 or more years old?</p>
+                <input type="radio" id="isAdult" name="isAdult" value="Yes">
+                <label for="isAdult">Yes</label><br>
+                <input type="radio" id="isAdult" name="isAdult" value="No">
+                <label for="isAdult">No</label><br><br>
+            </div>
+
+            <div id="choicePkmnDIV">
+                <p>What is your favorite Pokemon?</p>
+                <input type="radio" id="choicePkmn" name="choicePkmn" value="Pikachu">
+                <label for="choicePkmn">Pikachu</label><br>
+                <input type="radio" id="choicePkmn" name="choicePkmn" value="Raichu">
+                <label for="choicePkmn">Raichu</label><br>
+                <input type="radio" id="choicePkmn" name="choicePkmn" value="Evoli">
+                <label for="choicePkmn">Evoli</label><br>
+                <input type="radio" id="choicePkmn" name="choicePkmn" value="Saraga">
+                <label for="choicePkmn">Saraga</label><br><br>
+            </div>
 
             <p>Your favorite Pokemon colors?<br>(Can select multiple, optional)</p>
             <input type="checkbox" id="yellow" name="yellow" value="Yellow">
@@ -82,7 +103,7 @@
             <label for="white">White</label><br>
             <input type="checkbox" id="black" name="black" value="Black">
             <label for="black">Black</label><br><br>
-
+            
             <input type="submit" value="Submit"><br> 
         </form>
         
