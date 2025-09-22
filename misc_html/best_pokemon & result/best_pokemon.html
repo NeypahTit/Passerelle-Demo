@@ -9,14 +9,30 @@
                 // const isAdult = targetElement.querySelectorAll('#isAdult');
                 // const radioInput = targetElement.querySelectorAll('#choicePkmn');
 
+                let flagError = false;
+
                 console.log(e);
 
                 if (usernameInput.value == "") {
                     usernameInput.classList.add('error');
-                    return false;
+                    flagError = true;
                 }
 
-                return true;
+                // for (i in isAdult) {
+                //     if (!isAdult[i].checked) {
+                //         isAdult[i].classList.add('error');
+                //         flagError = true;
+                //     }
+                // }
+
+                // for (i in radioInput) {
+                //     if (!radioInput[i].checked) {
+                //         radioInput[i].classList.add('error');
+                //         flagError = true;
+                //     }
+                // }
+
+                return flagError ? false : true;
             }
         </script>
         <style>
@@ -30,7 +46,6 @@
                 color: gold;
             }
             .error {
-                color: red;
                 background-color: red;
             }
         </style>
