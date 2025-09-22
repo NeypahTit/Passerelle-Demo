@@ -53,11 +53,7 @@
                             tempCount++;
                             paragraph.innerHTML += `<span id="colors_${colorsArray[i]}">${colorsArray[i]}</span>`;
                         
-                            if (tempCount < colorsArray.length && colorsArray.length > 2) {
-                                paragraph.innerHTML += ", ";
-                            } else {
-                                paragraph.innerHTML += " ";
-                            }
+                            if (tempCount < colorsArray.length && colorsArray.length > 2) paragraph.innerHTML += ", ";
 
                             if (tempCount == colorsArray.length-1) paragraph.innerHTML += " and ";
                         }
