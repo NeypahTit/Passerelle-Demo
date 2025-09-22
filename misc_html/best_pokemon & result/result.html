@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            console.log(window.location);
+            const params = new URLSearchParams(window.location.search);
+            const username = params.get('name');
+            const vote = params.get('choice');
+            let myClass = "";
+
+            switch(vote) {
+                case 'Raichu':
+                    myClass = 'green';
+                    break;
+                case 'Pikachu':
+                    myClass = 'red';
+                    break;
+                // case 'Evoli':
+                    // myClass = 'blue';
+                    // break;
+                default:
+                    myClass = 'blue';
+            }
+
+            this.onload = () => {
+                const paragraph = document.querySelector("#result");
+                // paragraph.innerHTML = username + "'s favorite pokemon is " + vote;
+                // paragraph.innerHTML = `<span>${username}'s</span> favorite pokemon is <span class="${myClass}">${vote}</span>`;
+                paragraph.innerHTML = `<span>${username}'s</span> favorite pokemon is <span id="vote">${vote}</span>`;
+                const voteSpan = document.querySelector("#vote");
+                voteSpan.style.color = myClass;
+            }
+        </script>
+        <style>
+            span{
+                color:green;
+            }
+            .red{
+                color:red;
+            }
+            .green{
+                color:green;
+            }
+            .blue{
+                color:blue;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Result</h1>
+        <p id="result"></p>
+    </body>
+</html>
