@@ -64,7 +64,7 @@
 
                 if (isOver18 == "Yes") {
                     paragraph.innerHTML += `<br><br><b><span id="username">${username}</span></b> is <b>18 or more</b> years old.`;
-                } else {
+                } else if (isOver18 == "No") {
                     paragraph.innerHTML += `<br><br><b><span id="username">${username}</span></b> is <b>under 18</b> years old.`;
                 }
             }

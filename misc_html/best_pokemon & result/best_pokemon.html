@@ -3,7 +3,7 @@
     <head>
         <title>A Pokemon Form</title>
         <script>
-            debug = false;
+            debug = true;
 
             this.onsubmit = (e) => {
                 const targetElement = event.target;
@@ -26,24 +26,24 @@
                     flagError = true;
                 }
 
-                if (debug) {
-                    for (i in isAdultInputs) {
-                        let isAdultInput = isAdultInputs[i];
+                for (var i = 0; i < isAdultInputs.length; i++) {
+                    let isAdultInput = isAdultInputs[i];
                     
-                        if (!isAdultInput.checked) {
-                            flagAsError(isAdultDIV);
-                            flagError = true;
-                        }
-                    }
+                    if (isAdultInput.checked) break;
+                    if (!isAdultInput.checked && i != isAdultInputs.length - 1) continue;
 
-                    for (i in radioInputs) {
-                        let radioInput = radioInputs[i];
+                    flagAsError(isAdultDIV);
+                    flagError = true;
+                }
 
-                        if (!radioInput.checked) {
-                            flagAsError(radioDIV);
-                            flagError = true;
-                        }
-                    }
+                for (var i = 0; i < radioInputs.length; i++) {
+                    let radioInput = radioInputs[i];
+                        
+                    if (radioInput.checked) break;
+                    if (!radioInput.checked && i != radioInputs.length - 1) continue;
+
+                    flagAsError(radioDIV);
+                    flagError = true;
                 }    
 
                 return flagError ? false : true;
