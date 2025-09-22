@@ -2,6 +2,23 @@
 <html>
     <head>
         <title>A Pokemon Form</title>
+        <script>
+            this.onsubmit = (e) => {
+                const targetElement = event.target;
+                const usernameInput = targetElement.querySelector('#username');
+                // const isAdult = targetElement.querySelectorAll('#isAdult');
+                // const radioInput = targetElement.querySelectorAll('#choicePkmn');
+
+                console.log(e);
+
+                if (usernameInput.value == "") {
+                    usernameInput.classList.add('error');
+                    return false;
+                }
+
+                return true;
+            }
+        </script>
         <style>
             body {
                 font-size: 1.35rem;
@@ -12,35 +29,46 @@
             h1, p, span {
                 color: gold;
             }
+            .error {
+                color: red;
+                background-color: red;
+            }
         </style>
     </head>
     <body>
         <h1>Best Pokemon</h1>
         <form action="result.html" method="get" autocomplete="on">
-            <span><label for="name">Please type in your name:</label></span><br>
-            <input type="text" id="name" name="name"/><br><br>
+            <span><label for="username">Please type in your name:</label></span><br>
+            <input type="text" id="username" name="username"/><br><br>
+
+            <p>Are you 18 or more years old?</p>
+            <input type="radio" id="isAdult" name="isAdult" value="Yes">
+            <label for="isAdult">Yes</label><br>
+            <input type="radio" id="isAdult" name="isAdult" value="No">
+            <label for="isAdult">No</label><br><br>
+            
             
             <p>What is your favorite Pokemon?</p>
-            <input type="radio" id="pikachu" name="choice" value="Pikachu"></input>
+            <input type="radio" id="choicePkmn" name="choicePkmn" value="Pikachu">
             <label for="pikachu">Pikachu</label><br>
-            <input type="radio" id="raichu" name="choice" value="Raichu"></input>
+            <input type="radio" id="choicePkmn" name="choicePkmn" value="Raichu">
             <label for="raichu">Raichu</label><br>
-            <input type="radio" id="evoli" name="choice" value="Evoli"></input>
+            <input type="radio" id="choicePkmn" name="choicePkmn" value="Evoli">
             <label for="evoli">Evoli</label><br>
-            <input type="radio" id="saraga" name="choice" value="Saraga"></input>
+            <input type="radio" id="choicePkmn" name="choicePkmn" value="Saraga">
             <label for="saraga">Saraga</label><br><br>
 
             <p>Your favorite Pokemon colors?<br>(Can select multiple, optional)</p>
-            <input type="checkbox" id="yellow" name="yellow" value="Yellow"></input>
+            <input type="checkbox" id="yellow" name="yellow" value="Yellow">
             <label for="yellow">Yellow</label><br>
-            <input type="checkbox" id="orange" name="orange" value="Orange"></input>
+            <input type="checkbox" id="orange" name="orange" value="Orange">
             <label for="orange">Orange</label><br>
-            <input type="checkbox" id="white" name="white" value="White"></input>
+            <input type="checkbox" id="white" name="white" value="White">
             <label for="white">White</label><br>
-            <input type="checkbox" id="black" name="black" value="Black"></input>
+            <input type="checkbox" id="black" name="black" value="Black">
             <label for="black">Black</label><br><br>
 
-            <input type="submit" value="Submit"></input><br> 
+            <input type="submit" value="Submit"><br> 
         </form>
         
     </body>

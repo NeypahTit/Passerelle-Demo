@@ -6,8 +6,8 @@
             console.log(window.location);
             const params = new URLSearchParams(window.location.search);
             
-            const username = params.get('name');
-            const vote = params.get('choice');
+            const username = params.get('username');
+            const vote = params.get('choicePkmn');
             let myClass = "";
             
             const yellow = params.get('yellow');
@@ -17,6 +17,8 @@
             const colorsArrayChecker = [yellow, orange, white, black];
             let colorsArray = [];
             let multipleColors = false;
+
+            const isOver18 = params.get('isAdult');
 
             switch(vote) {
                 case 'Raichu':
@@ -58,6 +60,12 @@
                             if (tempCount == colorsArray.length-1) paragraph.innerHTML += " and ";
                         }
                     }
+                }
+
+                if (isOver18 == "Yes") {
+                    paragraph.innerHTML += `<br><br><b><span id="username">${username}</span></b> is <b>18 or more</b> years old.`;
+                } else {
+                    paragraph.innerHTML += `<br><br><b><span id="username">${username}</span></b> is <b>under 18</b> years old.`;
                 }
             }
         </script>
