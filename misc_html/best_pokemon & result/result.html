@@ -37,21 +37,21 @@
 
             this.onload = () => {
                 const paragraph = document.querySelector("#result");
-                paragraph.innerHTML = `<span id="username">${username}'s</span> favorite Pokemon is <span id="vote">${vote}</span>`;
+                paragraph.innerHTML = `<b><span id="username">${username}'s</span></b> favorite Pokemon is <b><span id="vote">${vote}</span></b>`;
 
                 const voteSpan = document.querySelector("#vote");
                 voteSpan.style.color = myClass;
 
                 if (colorsArray.length != 0) {
                     if (!multipleColors) {
-                        paragraph.innerHTML += `<br>Additionally, <span id="username">${username}'s</span> favorite color is <span id="colors_${colorsArray[0]}">${colorsArray[0]}</span>`;
+                        paragraph.innerHTML += `<br>Additionally, <b><span id="username">${username}'s</span></b> favorite color is <b><span id="colors_${colorsArray[0]}">${colorsArray[0]}</span></b>`;
                     } else {
                         let tempCount = 0;
-                        paragraph.innerHTML += `<br>Additionally, <span id="username">${username}'s</span> favorite colors are `;
+                        paragraph.innerHTML += `<br>Additionally, <b><span id="username">${username}'s</span></b> favorite colors are `;
 
                         for (i in colorsArray) {
                             tempCount++;
-                            paragraph.innerHTML += `<span id="colors_${colorsArray[i]}">${colorsArray[i]}</span>`;
+                            paragraph.innerHTML += `<b><span id="colors_${colorsArray[i]}">${colorsArray[i]}</span></b>`;
                         
                             if (tempCount < colorsArray.length && colorsArray.length > 2) paragraph.innerHTML += ", ";
 
