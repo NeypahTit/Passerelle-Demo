@@ -9,14 +9,14 @@
  * - Add username associated with the records.
  * - Improve display.
  */
-this.onload = async ()=>{
+this.onload = async () => {
     /*********************************************
      * VARIABLES
      ********************************************/
-    let randomWords=''; // The words sentence the user needs to type.
-    let startTime=0; // Time the user takes to type the word (updated every millisecond).
-    let timerRecorded=0; // timer record (updated every cents of second).
-    let intervalID=0;// an ID for the Timer so that we can stop it.
+    let randomWords = ''; // The words sentence the user needs to type.
+    let startTime = 0; // Time the user takes to type the word (updated every millisecond).
+    let timerRecorded = 0; // timer record (updated every cents of second).
+    let intervalID = 0;// an ID for the Timer so that we can stop it.
     let allRecords = []; // Array of timer recorded.
     let lastWasDead = false; // Trick for ô style double strokes
 
@@ -35,11 +35,13 @@ this.onload = async ()=>{
     const nbWordInput = document.querySelector("#nb");
     const lengthInput = document.querySelector("#len");//==> EXPLAIN THIS LINE OF CODE
     const typeWordP = document.querySelector('#typedword');// get the html element for user typed
+
     // Add an event listener to listen to keyboard type.
-    typeWordP.addEventListener('input',onInput);
-    startBtn.addEventListener('click',startGame); // listen to click on start button
+    typeWordP.addEventListener('input', onInput);
+    startBtn.addEventListener('click', startGame); // listen to click on start button
     document.addEventListener('keydown', (event) => {
         const keyTyped = event.key;
+
         if (keyTyped === "Dead") {
             // Trick for ô style double strokes.
             lastWasDead = true;
@@ -98,7 +100,7 @@ this.onload = async ()=>{
     function onInput(event) {
         let typedString = typeWordP.textContent;
 
-        if (event==null) {
+        if (event == null) {
             typedString = typedString.slice(-1);
         }
 
@@ -124,7 +126,7 @@ this.onload = async ()=>{
             // and replace spaces by non breaking spaces...
             const charA = text[i].replace(/ /g, '\u00A0').charCodeAt(0);
             const charB = randomWords[i].replace(/ /g, '\u00A0').charCodeAt(0);
-            console.log(text[i], text[i] == ' ', charA, randomWords[i]== ' ', charB);
+            console.log(text[i], text[i] == ' ', charA, randomWords[i] == ' ', charB);
             
             if (charA == charB) {
                 displayText += `<span class="correct">${randomWords[i]}</span>`;
@@ -148,7 +150,7 @@ this.onload = async ()=>{
             timerP.setAttribute("class","blink");
             randomWordP.classList.add("blink");
 
-            allRecords.push( {time: timerRecorded, word:typed });
+            allRecords.push({time: timerRecorded, word:typed });
             allRecords.sort((a, b) => a.time - b.time);
             allRecordsOL.innerHTML = "";
             allRecords.forEach(element => {
