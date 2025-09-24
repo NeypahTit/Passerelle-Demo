@@ -2,7 +2,7 @@
 window.onload = () => {
     const debug = false; // enables console logs if true
 
-    // timers
+    // timers, in milliseconds
     const timeout = 300;
     const timeout2 = 500;
     const timeout3 = 500;
