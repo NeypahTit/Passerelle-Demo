@@ -131,8 +131,7 @@ ol li:hover {
     transform: scale(1.05);
 }
 #startgame{
-    /*display: none;*/
-    display: inline-block;
+    display: none;
 }
 .container {
     display: flex; /* or inline-flex */

@@ -3,7 +3,6 @@
  * You will make some changes to make it your own.
  * 
  * @todo :
- * - Load current api languages.
  * - Add levels and auto increase word count and length.
  * - Add penalty when user skips word.
  * - Add username associated with the records.
@@ -16,7 +15,7 @@ this.onload = async () => {
     let randomWords = ''; // The words sentence the user needs to type.
     let startTime = 0; // Time the user takes to type the word (updated every millisecond).
     let timerRecorded = 0; // timer record (updated every cents of second).
-    let intervalID = 0;// an ID for the Timer so that we can stop it.
+    let intervalID = 0; // an ID for the Timer so that we can stop it.
     let allRecords = []; // Array of timer recorded.
     let lastWasDead = false; // Trick for ô style double strokes
 
@@ -26,36 +25,42 @@ this.onload = async () => {
     const apiUrl = "https://random-word-api.herokuapp.com";
     
     /**
-     * get the HTML elements
+     * Get the HTML elements
      */
-    const randomWordP = document.querySelector('#randomword');// get the html element for randWord
-    const timerP = document.querySelector("#timer");// get the timer P element
-    const startBtn = document.querySelector('#startgame');// start button
+    const randomWordP = document.querySelector('#randomword'); // get the html element for randWord
+    const timerP = document.querySelector("#timer"); // get the timer P element
+    const startBtn = document.querySelector('#startgame'); // start button
     const allRecordsOL = document.querySelector('#allRecords'); // list of records
-    const nbWordInput = document.querySelector("#nb");
-    const lengthInput = document.querySelector("#len");//==> EXPLAIN THIS LINE OF CODE
-    const typeWordP = document.querySelector('#typedword');// get the html element for user typed
+    const nbWordInput = document.querySelector("#nb"); // get the element for the word amount setting
+    const lengthInput = document.querySelector("#len"); // get the element for the word length setting
+    const typeWordP = document.querySelector('#typedword'); // get the html element for user typed
 
-    // Add an event listener to listen to keyboard type.
-    typeWordP.addEventListener('input', onInput);
-    startBtn.addEventListener('click', startGame); // listen to click on start button
-    document.addEventListener('keydown', (event) => {
-        const keyTyped = event.key;
+    // Get & set up the list of languages first
+    getLanguages().then(() => {
+        // Display the start button
+        startBtn.style.display = 'inline-block';
 
-        if (keyTyped === "Dead") {
-            // Trick for ô style double strokes.
-            lastWasDead = true;
-        } else {
-            lastWasDead = false;
+        // Add an event listener to listen to keyboard type.
+        typeWordP.addEventListener('input', onInput);
+        startBtn.addEventListener('click', startGame); // listen to click on start button
+        document.addEventListener('keydown', (event) => {
+            const keyTyped = event.key;
 
-            if (keyTyped === "Enter") {
-                startGame();
-            } else if (timerRecorded > 0 && (event.key === 'Backspace' || event.key === 'Delete')) {
-                // Delete or backspace.
-                console.log('keydown');
-                onInput(null);
+            if (keyTyped === "Dead") {
+                // Trick for ô style double strokes.
+                lastWasDead = true;
+            } else {
+                lastWasDead = false;
+
+                if (keyTyped === "Enter") {
+                    startGame();
+                } else if (timerRecorded > 0 && (event.key === 'Backspace' || event.key === 'Delete')) {
+                    // Delete or backspace.
+                    console.log('keydown');
+                    onInput(null);
+                }
             }
-        }
+        });
     });
 
     async function startGame() {
@@ -64,9 +69,9 @@ this.onload = async () => {
         // Get language
         const langInput = document.querySelector("[name='lang']:checked");
         
-        // Fetch the random from the API.
+        // Fetch random word(s) from the API.
         randomWords = await getRandomWord(lengthInput.value, nbWordInput.value, langInput.value);
-        randomWordP.textContent = randomWords; // put the random word in the P element
+        randomWordP.textContent = randomWords; // put the random word(s) in the P element
         
         // Resetting 
         typeWordP.innerHTML = typeWordP.value = "";
@@ -116,7 +121,7 @@ this.onload = async () => {
      * @param text
      * @returns {string}
      */
-    function wordHighlighter(text){
+    function wordHighlighter(text) {
         let displayText = '';
         let end = randomWords.substring(text.length);
         // console.log(text, end);
@@ -142,12 +147,12 @@ this.onload = async () => {
      * ==> EXPLAIN
      * @param {String} typed
      */
-    function checkWord(typed){
+    function checkWord(typed) {
         //==> EXPLAIN THIS if BLOCK OF CODE (these 4 lines below)
         if(typed === randomWords) {
             clearInterval(intervalID);
             typeWordP.blur();
-            timerP.setAttribute("class","blink");
+            timerP.setAttribute("class", "blink");
             randomWordP.classList.add("blink");
 
             allRecords.push({time: timerRecorded, word:typed });
@@ -164,24 +169,62 @@ this.onload = async () => {
     }
 
     /**
-     * ==> EXPLAIN
-     * @param lngth
-     * @param nmber
-     * @param lng
-     * @returns {Promise<*>}
+     * Fetches random word(s) using HerokuApp's Random Word API
+     * @param lngth Defines the desired length of each individual word
+     * @param nmber Defines the desired amount of words
+     * @param lng Defines the language from which to fetch word(s) from, in a language code format
+     * @returns {Promise<*>} Returns a `string`, formed from an `array` of words (words are joined together with an empty space (`" "`))
      */
     async function getRandomWord(lngth, nmber, lng) {
-        // String interpolated url with parameters as variables
         console.log(lng);
+
+        // String interpolated url with parameters as variables, call http, get the response data
         const url = `${apiUrl}/word?length=${lngth}&number=${nmber}&lang=${lng}`;
-        
-        // Call http.
         const response = await fetch(url);
-        
-        // Get the rsponse data.
-        const data = await response.json();
+        const data = await response.json(); // Becomes an array of strings
         
         // Return the data to the function call.
         return data.join(" ");
+    }
+
+    /**
+     * Fetches language data from HerokuApp's Random Word API in order to automatically create a language list
+     * @returns `void`
+     */
+    async function getLanguages() {
+        // String interpolated url, call http, get the response data
+        const url = `${apiUrl}/languages`;
+        const response = await fetch(url);
+        const data = await response.json(); // Becomes an array of strings
+
+        // console.log(data);
+
+        // Selects the div element that hosts the language choice
+        const languagesElement = document.querySelector("div#languages");
+
+        // For each index within `data` array...
+        for (let i = 0; i < data.length; i++) {
+            // Create a new `input` element, `label` element, and `br` element
+            let radioInput = document.createElement("input");
+            let radioLabel = document.createElement("label");
+            let lineBreak = document.createElement("br");
+            
+            // Sets up `label` element's text content and its `for` attribute
+            radioLabel.for = data[i];
+            radioLabel.textContent = data[i];
+            languagesElement.appendChild(radioLabel);
+
+            // Sets up `input` element to be of `"radio"` type, then sets up its name, value and id
+            // If its the very first `input` element in the loop, additionally automatically checks it
+            if (i == 0) radioInput.checked = true;
+            radioInput.type = "radio";
+            radioInput.name = "lang";
+            radioInput.value = data[i];
+            radioInput.id = data[i];
+            languagesElement.appendChild(radioInput);
+
+            // Appends a line break (`br` element) after the previous elements
+            languagesElement.appendChild(lineBreak);
+        }
     }
 }
