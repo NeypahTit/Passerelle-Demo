@@ -112,8 +112,8 @@ window.onload = () => {
             // set the text content
             item.innerHTML = char;
             
-            item.style.backgroundColor = `hsla(${currentHue % 360}, 100%, 30%, .8)`; // sets the text background's color of the element
-            item.style.color = `hsla(${(currentHue + 180) % 360}, 100%, 70%, 1)`; // sets the text's color of the element
+            item.style.backgroundColor = `hsla(${currentHue % 360}, 75%, 66%, .8)`; // sets the text background's color of the element
+            item.style.color = `hsla(${(currentHue + 180) % 360}, 50%, 100%, 1)`; // sets the text's color of the element
             item.classList.add(extraClass); // appends the HTML class defined by `extraClass` to the element
         }, delay);
 
@@ -122,7 +122,7 @@ window.onload = () => {
             // go back to the initial character
             item.innerHTML = primary;
 
-            item.style.backgroundColor = `hsla(${currentHue % 360}, 100%, 50%, .3)`; // sets the text background's color of the element
+            item.style.backgroundColor = `hsla(${currentHue % 360}, 75%, 35%, .3)`; // sets the text background's color of the element
             item.classList.remove(extraClass); // removes the HTML class defined by `extraClass` to the element
         }, delay * 2);
     }
