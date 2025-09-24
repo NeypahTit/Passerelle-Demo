@@ -3,18 +3,18 @@ window.onload = () => {
     const debug = false; // enables console logs if true
 
     // timers, in milliseconds
-    const timeout = 300;
-    const timeout2 = 500;
-    const timeout3 = 500;
+    const timeout = 100;
+    const timeout2 = 300;
+    const timeout3 = 300;
 
     // arrays of random characters
-    const center = ['@', '®', '©'];
-    const secondary = ['\\', '/', '|', '-', '_','&boxv;','&boxh;','&boxvl;','&boxvl;','&boxhd;','&boxhu;'];
-    const tertiary = ['.', '*', '•', '°'];
+    const center = ['@', '/', '\\', '&'];
+    const secondary = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+    const tertiary = ['U', 'S', 'A', 'M', 'O', 'N', 'G'];
 
     // circles
-    const max = 2; // first circle around center
-    const max2 = 3; // second circle around center
+    const max = 1; // first circle around center
+    const max2 = 2.5; // second circle around center
 
     const primary = "&nbsp;" // initial character
     
@@ -58,7 +58,7 @@ window.onload = () => {
         }
 
         // increase the hue by a little
-        currentHue += 2;
+        currentHue += Math.random() * 15 + 5;
 
         // grabs the id, splits it via "-"
         // results in "idXX" and "YY" strings
@@ -112,8 +112,8 @@ window.onload = () => {
             // set the text content
             item.innerHTML = char;
             
-            item.style.backgroundColor = `hsla(${currentHue % 360}, 75%, 66%, .8)`; // sets the text background's color of the element
-            item.style.color = `hsla(${(currentHue + 180) % 360}, 50%, 100%, 1)`; // sets the text's color of the element
+            item.style.backgroundColor = `hsla(${currentHue % 360}, 100%, 40%, 1)`; // sets the text background's color of the element
+            item.style.color = `hsla(${(currentHue + 180) % 360}, 100%, 80%, .8)`; // sets the text's color of the element
             item.classList.add(extraClass); // appends the HTML class defined by `extraClass` to the element
         }, delay);
 
@@ -122,7 +122,7 @@ window.onload = () => {
             // go back to the initial character
             item.innerHTML = primary;
 
-            item.style.backgroundColor = `hsla(${currentHue % 360}, 75%, 35%, .3)`; // sets the text background's color of the element
+            item.style.backgroundColor = `hsla(${currentHue % 360}, 100%, 25%, .3)`; // sets the text background's color of the element
             item.classList.remove(extraClass); // removes the HTML class defined by `extraClass` to the element
         }, delay * 2);
     }
