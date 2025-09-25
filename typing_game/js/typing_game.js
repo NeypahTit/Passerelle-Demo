@@ -202,7 +202,6 @@ this.onload = async () => {
 
     /**
      * Fetches language data from HerokuApp's Random Word API in order to automatically create a language list
-     * @returns `void`
      */
     async function getLanguages() {
         // String interpolated url, call http, get the response data
