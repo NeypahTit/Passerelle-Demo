@@ -130,23 +130,30 @@ ol li {
 ol li:hover {
     transform: scale(1.05);
 }
-#startgame{
+
+#startgame {
     display: none;
 }
+
 .container {
     display: flex; /* or inline-flex */
     justify-content: center;
 }
+
 .item {
     flex-grow: 4; /* default 0 */
 }
-.item p{
-padding: 6px;
+
+.item p {
+    padding: 6px;
 }
 
 [contenteditable="true"]:focus {
-  outline: none;
-  border: none;
-  box-shadow: none;
+    outline: none;
+    border: none;
+    box-shadow: none;
 }
 
+.unclickable_input {
+    pointer-events: none;
+}

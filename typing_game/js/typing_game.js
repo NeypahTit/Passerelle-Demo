@@ -8,9 +8,7 @@
  * - Add username associated with the records.
  * - Improve display.
  * 
- * - Make any input other than the typing field unselectable/unfocusable during gameplay
  * - Make the word(s) goal sentence uncopyable
- * - After gameplay is over, make the typing field unselectable
  */
 this.onload = async () => {
     /*********************************************
@@ -91,6 +89,10 @@ this.onload = async () => {
         // Putting the ouse caret in the text box.
         // Oppposite is call blur.
         typeWordP.focus();
+        typeWordP.classList.remove("unclickable_input"); // Makes the typing field selectable
+
+        // Makes all inputs aside from typing field be unclickable
+        setUnclickableClassForAllInputs();
     }
 
     /**
@@ -148,8 +150,8 @@ this.onload = async () => {
     }
 
     /**
-     * Checks the player's typed word(s) to compare them against the word(s) the player has to type (`randomWords`)
-     * @param {String} typed The word(s) that the player is typing
+     * Checks the player's typed word(s) to compare them against the word(s) the player has to type, and if they match, ends the game
+     * @param {String} typed The word(s) that the player is typing in
      */
     function checkWord(typed) {
         // if the word(s) player has typed are equal in type and value to the word(s) the player has to write
@@ -172,6 +174,10 @@ this.onload = async () => {
 
             // resets the timer's time variable
             timerRecorded = startTime = 0;
+
+            // makes all inputs once again clickable
+            setUnclickableClassForAllInputs(undefined, true);
+            typeWordP.classList.add("unclickable_input"); // makes the typing field unselectable
         }
     }
 
@@ -233,5 +239,36 @@ this.onload = async () => {
             // Appends a line break (`br` element) after the previous elements
             languagesElement.appendChild(lineBreak);
         }
+    }
+
+    /**
+     * Adds the `unclickable_input` CSS class for all input elements, which toggles the `pointer-events: none` CSS attribute
+     * @param {String[]} idsToExclude Optional, defines the HTML `id`s that this function should ignore when going over all `input` elements
+     * @param {Boolean} shouldRemove Optional, specifies that this function should remove the `unclickable_input` CSS class instead of adding
+     */
+    function setUnclickableClassForAllInputs(idsToExclude, shouldRemove) {
+        // Get all input elements
+        const allInputs = document.querySelectorAll("input");
+
+        // Iterates through all input elements
+        allInputs.forEach(input => {
+            // If there are any ids to check...
+            if (idsToExclude != undefined && idsToExclude.length > 0) {
+                // For each id...
+                for (let i = 0; i < idsToExclude.length; i++) {
+                    // Do id comparison between input and specified index of id arrays
+                    if (input.id == idsToExclude[i]) return;
+                }
+            }
+            
+            // Either removes or adds the class
+            if (shouldRemove) {
+                input.classList.remove("unclickable_input");
+                console.log(input, "removed unclickable_input", idsToExclude, shouldRemove);
+            } else {
+                input.classList.add("unclickable_input");
+                console.log(input, "added unclickable_input", idsToExclude, shouldRemove);
+            }
+        });
     }
 }
