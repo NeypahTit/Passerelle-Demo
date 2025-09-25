@@ -7,6 +7,10 @@
  * - Add penalty when user skips word.
  * - Add username associated with the records.
  * - Improve display.
+ * 
+ * - Make any input other than the typing field unselectable/unfocusable during gameplay
+ * - Make the word(s) goal sentence uncopyable
+ * - After gameplay is over, make the typing field unselectable
  */
 this.onload = async () => {
     /*********************************************
@@ -144,26 +148,29 @@ this.onload = async () => {
     }
 
     /**
-     * ==> EXPLAIN
-     * @param {String} typed
+     * Checks the player's typed word(s) to compare them against the word(s) the player has to type (`randomWords`)
+     * @param {String} typed The word(s) that the player is typing
      */
     function checkWord(typed) {
-        //==> EXPLAIN THIS if BLOCK OF CODE (these 4 lines below)
-        if(typed === randomWords) {
-            clearInterval(intervalID);
-            typeWordP.blur();
-            timerP.setAttribute("class", "blink");
-            randomWordP.classList.add("blink");
+        // if the word(s) player has typed are equal in type and value to the word(s) the player has to write
+        if (typed === randomWords) {
+            clearInterval(intervalID); // resets the timer's interval loop
+            typeWordP.blur(); // removes keyboard focus from the typing field
+            timerP.setAttribute("class", "blink"); // causes the timer to blink
+            randomWordP.classList.add("blink"); // causes the random word(s) to blink
 
-            allRecords.push({time: timerRecorded, word:typed });
-            allRecords.sort((a, b) => a.time - b.time);
-            allRecordsOL.innerHTML = "";
+            allRecords.push({time: timerRecorded, word:typed }); // pushes a new record with the time and the typed word(s)
+            allRecords.sort((a, b) => a.time - b.time); // sorts the record
+            allRecordsOL.innerHTML = ""; // resets the ordered list
+
+            // for each record, creates a list item containing a record, then appends it
             allRecords.forEach(element => {
                 const li = document.createElement("li");
                 li.textContent = `${element.time}s (${element.word})`;
                 allRecordsOL.appendChild(li);
             });
 
+            // resets the timer's time variable
             timerRecorded = startTime = 0;
         }
     }
