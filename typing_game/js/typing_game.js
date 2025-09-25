@@ -63,6 +63,9 @@ this.onload = async () => {
                 }
             }
         });
+    }).catch((whyRejected) => {
+        console.warn(whyRejected);
+        alert(whyRejected);
     });
 
     async function startGame() {
