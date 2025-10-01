@@ -1,0 +1,27 @@
+body {
+  color: white;
+  background-color: rgb(153, 5, 153);
+  text-align: center;
+  padding: 50px;
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#small_text {
+  font-size: 0.7em;
+}
+
+a[href], #important_name {
+  font-weight: bold;
+  color: hotpink;
+  text-decoration: underline;
+}
+
+#important_name {
+  color: aquamarine;
+  text-decoration: none;
+}
+
+a[href]:hover {
+  font-style: italic;
+  color:darkorange;
+}
