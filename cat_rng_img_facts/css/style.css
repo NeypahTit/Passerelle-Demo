@@ -1,0 +1,12 @@
+body {
+  color: white;
+  background-color: black;
+  text-align: center;
+  padding: 25px;
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+img {
+  display: block;
+  margin: auto;
+}
