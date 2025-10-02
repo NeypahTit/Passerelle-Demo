@@ -6,10 +6,10 @@ this.onload = async () => {
 
     getCatImage().then((img) => {
         rngCatImage.src = img;
-        console.log(rngCatImage.src, "aaaa");
+        // console.log(rngCatImage.src, "aaaa");
         catImageAppender.append(rngCatImage);
     }).catch((whyRejected) => {
-        console.warn("CAT IMAGE:", whyRejected);
+        // console.warn("CAT IMAGE:", whyRejected);
         alert("CAT IMAGE:", whyRejected);
     });
 
