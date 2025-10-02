@@ -9,7 +9,7 @@ this.onload = async () => {
         // console.log(rngCatImage.src, "aaaa");
         catImageAppender.append(rngCatImage);
     }).catch((whyRejected) => {
-        // console.warn("CAT IMAGE:", whyRejected);
+        console.warn("CAT IMAGE:", whyRejected);
         alert("CAT IMAGE:", whyRejected);
     });
 
